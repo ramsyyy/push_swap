@@ -18,7 +18,7 @@ SRC = main.c
 
 PARSING = ./parsing/check_arg.c
 
-UTILS = ./sa.c ./list_init.c
+UTILS = ./sa.c ./list_init.c ./list_init_utils.c
 
 all : $(NAME)
 
@@ -30,7 +30,7 @@ $(NAME): $(OBJ)
 		make -C $(PRINTFPATH)
 		mv $(LIBFTPATH)$(LIBFTNAME) $(LIBFTNAME)
 		mv $(PRINTFPATH)$(PRINTFNAME) $(PRINTFNAME)
-		${CC} ${CFLAGS} ${SRC} $(PARSING) $(UTILS) $(PRINTFNAME) ${LIBFTNAME} -o ${NAME}
+		${CC}  ${CFLAGS} ${SRC} $(PARSING) $(UTILS) $(PRINTFNAME) ${LIBFTNAME} -o ${NAME}
 
 clean:
 		rm -rf *.o

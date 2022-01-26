@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   list_init_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/22 13:12:23 by raaga             #+#    #+#             */
-/*   Updated: 2022/01/26 20:51:22 by raaga            ###   ########.fr       */
+/*   Created: 2022/01/26 16:13:23 by raaga             #+#    #+#             */
+/*   Updated: 2022/01/26 20:46:49 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int main(int argc, char **argv)
+void	*back_to_start(t_list *a)
 {
-	t_list	*a;
-	t_list	*b;
-
-	if (check_arg(argc, argv) == -1)
+	while (a != NULL)
 	{
-		ft_printf("error\n");
-		return (0);
+		if (a->prev == NULL)
+			break;
+		a = a->prev;
 	}
-	b = NULL;
-	a = list_init(argc, argv);
+	return (a);
+}
 
-	pb(&b,a);
-	printf("%d\n", a->nb);
-	//display_list(b);
+void	*go_to_end(t_list *a)
+{
+	while (a != NULL)
+	{
+		if (a->next == NULL)
+			break;
+		a = a->next;
+	}
+	return (a);
 }
