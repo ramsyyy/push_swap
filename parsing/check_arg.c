@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:07:04 by raaga             #+#    #+#             */
-/*   Updated: 2022/01/24 21:48:24 by raaga            ###   ########.fr       */
+/*   Updated: 2022/01/26 14:30:17 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,21 @@ int	if_neg(char *str, int i)
 
 static int	check_numbers(char *str)
 {
-	int		i;
+	int	i;
+	int	nb;
 
 	i = 0;
+	nb = 0;
 	if (!str || ft_strlen(str) == 0)
 		return (0);
 	while (str[i])
 	{
-		if ((str[i] >= '0' && str[i] <= '9') || str[i] == ' ')
+		if (str[i] >= '0' && str[i] <= '9')
+		{
+			i++;
+			nb++;
+		}
+		else if (str[i] == ' ')
 			i++;
 		else if (str[i] == '-')
 		{
@@ -65,10 +72,16 @@ static int	check_numbers(char *str)
 		else
 			return (0);
 	}
-	return (1);
+	return (nb);
 }
 
-
+/**
+ * @brief check les argument passer en parametre
+ *
+ * @param argc
+ * @param argv
+ * @return int
+ */
 
 int	check_arg(int argc, char **argv)
 {
