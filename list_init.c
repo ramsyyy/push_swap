@@ -23,10 +23,8 @@ t_list	*ft_lstnew(int nb)
 
 char	**list_atoi(char **argv)
 {
-	int	i;
 	char **split;
 
-	i = 1;
 	split = ft_split(argv[1], ' ');
 	return (split);
 }
@@ -82,12 +80,14 @@ t_list	*list_init(int argc, char **argv)
 		argc = count_split(argv);
 	}
 	elem = init(argc, argv);
-	elem = back_to_start(elem);
+	back_to_start(&elem);
 	return (elem);
 }
 
 void	display_list(t_list *a)
 {
+	if (a == NULL)
+		return ;
 	if (a->prev == NULL)
 	{
 		while (a != NULL)
@@ -101,7 +101,7 @@ void	display_list(t_list *a)
 	}
 	else
 	{
-		a = back_to_start(a);
+		back_to_start(&a);
 		display_list(a);
 	}
 }

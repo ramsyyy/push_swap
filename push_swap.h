@@ -18,8 +18,8 @@ struct s_list
 int	check_arg(int argc, char **argv);
 
 t_list	*list_init(int argc, char **argv);
-void	*back_to_start(t_list *a);
-void	*go_to_end(t_list *a);
+void	back_to_start(t_list **a);
+void	go_to_end(t_list **a);
 void	display_list(t_list *a);
 t_list	*ft_lstnew(int nb);
 

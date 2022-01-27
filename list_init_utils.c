@@ -12,24 +12,38 @@
 
 #include "push_swap.h"
 
-void	*back_to_start(t_list *a)
+void	back_to_start(t_list **a)
 {
+	if (a == NULL)
+	{
+		if ((*a)->next != NULL)
+			*a = (*a)->next;
+		else if ((*a)->prev != NULL)
+			*a = (*a)->prev;
+		return ;
+	}
 	while (a != NULL)
 	{
-		if (a->prev == NULL)
+		if ((*a)->prev == NULL)
 			break;
-		a = a->prev;
+		*a = (*a)->prev;
 	}
-	return (a);
 }
 
-void	*go_to_end(t_list *a)
+void	go_to_end(t_list **a)
 {
-	while (a != NULL)
+	if (*a == NULL)
 	{
-		if (a->next == NULL)
-			break;
-		a = a->next;
+		if ((*a)->prev != NULL)
+			*a = (*a)->prev;
+		else if ((*a)->next != NULL)
+			*a = (*a)->next;
+		return ;
 	}
-	return (a);
+	while (*a != NULL)
+	{
+		if ((*a)->next == NULL)
+			break;
+		*a = (*a)->next;
+	}
 }

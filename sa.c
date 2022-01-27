@@ -32,26 +32,57 @@ void	ss(t_list *a, t_list *b)
 
 void	pb(t_list **b, t_list **a)
 {
-	//int	tmp;
+	t_list	*tmp;
 
-	back_to_start(&a);
+	if (*a == NULL)
+		return ;
 	if ((*b) == NULL)
 	{
 		*b = ft_lstnew((*a)->nb);
-		(*b)->prev = NULL;
-		(*b)->next = NULL;
-		*a = NULL;
+		if ((*a)->next != NULL)
+			*a = (*a)->next;
+			(*a)->prev = NULL;
+		else
+			*a = NULL;
 	}
-	//printf("%d\n", (*b)->nb);
-	/*else
+	else
 	{
-		b = go_to_end(b);
-		while (b != NULL)
-		{
-			tmp = b->nb;
-			b = b->next;
-			b = ft_lstnew(tmp);
-			b = b->prev->prev;
-		}
-	}*/
+		tmp = *b;
+		*b = (*b)->prev;
+		*b = ft_lstnew((*a)->nb);
+		(*b)->next = tmp;
+		if ((*a)->next != NULL)
+			*a = (*a)->next;
+		(*a)->prev = NULL;
+		else
+			*a = NULL;
+	}
+}
+
+void	pa(t_list **a, t_list **b)
+{
+	t_list	*tmp;
+
+	if (*b == NULL)
+		return ;
+	if ((*a) == NULL)
+	{
+		*a = ft_lstnew((*b)->nb);
+		if ((*b)->next != NULL)
+			*b = (*b)->next;
+		(*b)->prev = NULL;
+		else
+			*b = NULL;
+	}
+	else
+	{
+		back_to_start(a);
+		*a = (*a)->prev;
+		*a = ft_lstnew((*b)->nb);
+		if ((*b)->next != NULL)
+			*b = (*b)->next;
+		(*b)->prev = NULL;
+		else
+			*b = NULL;
+	}
 }

@@ -25,7 +25,16 @@ int main(int argc, char **argv)
 	b = NULL;
 	a = list_init(argc, argv);
 
-	pb(&b,a);
-	printf("%d\n", a->nb);
-	//display_list(b);
-}
+	pb(&b,&a);
+	pb(&b,&a);
+	pb(&b,&a);
+	pb(&b,&a);
+	pb(&b,&a);
+
+
+	//printf("%d\n", a->next->nb);
+	display_list(a);
+	ft_printf("\n");
+	display_list(b);
+	//sleep(15);
+}	
