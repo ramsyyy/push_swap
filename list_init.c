@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 16:45:07 by raaga             #+#    #+#             */
-/*   Updated: 2022/01/26 20:16:42 by raaga            ###   ########.fr       */
+/*   Updated: 2022/01/28 16:29:57 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ t_list	*ft_lstnew(int nb)
 char	**list_atoi(char **argv)
 {
 	char **split;
-
-	split = ft_split(argv[1], ' ');
+	
+	split = ft_split_mod(argv[1], ' ', argv[0]);
 	return (split);
 }
 

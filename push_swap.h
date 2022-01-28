@@ -15,6 +15,7 @@ struct s_list
 	t_list *next;
 };
 
+char	**ft_split_mod(char const *s, char c, char *str);
 int	check_arg(int argc, char **argv);
 
 t_list	*list_init(int argc, char **argv);
@@ -25,6 +26,10 @@ t_list	*ft_lstnew(int nb);
 
 void	sasb(t_list *a);
 void	pb(t_list **b, t_list **a);
+void    ra(t_list **a);
+void    rr(t_list **a, t_list **b);
+void    rra(t_list **a);
+void    rrr(t_list **a, t_list **b);
 
 
 
