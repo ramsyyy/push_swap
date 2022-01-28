@@ -16,7 +16,9 @@ struct s_list
 };
 
 char	**ft_split_mod(char const *s, char c, char *str);
-int	check_arg(int argc, char **argv);
+int		check_arg(int argc, char **argv);
+char	**list_atoi(char **argv);
+int		count_split(char **split);
 
 t_list	*list_init(int argc, char **argv);
 void	back_to_start(t_list **a);

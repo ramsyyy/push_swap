@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:07:04 by raaga             #+#    #+#             */
-/*   Updated: 2022/01/26 14:30:17 by raaga            ###   ########.fr       */
+/*   Updated: 2022/01/28 21:54:48 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,41 @@ static int	check_numbers(char *str)
  * @return int
  */
 
+int	check_doublons(int argc, char **argv)
+{
+	int		i;
+	int		q;
+	char	**tmp;
+
+	i = 1;
+	if (argc == 2)
+	{
+		tmp = argv;
+		argv = list_atoi(tmp);
+		argc = count_split(argv);
+	}
+	while (i < argc)
+	{
+		q = i + 1;
+		while (q < argc)
+		{
+			if (ft_strcmp(argv[i], argv[q]) == 0)
+				return (0);
+			q++;
+		}
+		i++;
+	}
+	return (1);
+}
+
 int	check_arg(int argc, char **argv)
 {
 	int	i;
 
 	i = 1;
 	if (argc <= 1)
+		return (-1);
+	if (check_doublons(argc, argv) == 0)
 		return (-1);
 	if (argc == 2)
 	{
