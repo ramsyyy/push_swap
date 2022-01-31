@@ -27,12 +27,20 @@ void	display_list(t_list *a);
 t_list	*ft_lstnew(int nb);
 
 void	sasb(t_list *a);
-void	pb(t_list **b, t_list **a);
-void    ra(t_list **a);
-void    rr(t_list **a, t_list **b);
-void    rra(t_list **a);
-void    rrr(t_list **a, t_list **b);
+void	ft_pb(t_list **b, t_list **a);
+void    ft_ra(t_list **a);
+void    ft_rra(t_list **a);
 
 void    sa(t_list *a);
+void	sb(t_list *b);
+void	ss(t_list *a, t_list *b);
+void	pa(t_list **a, t_list **b);
+void	pb(t_list **b, t_list **a);
+void	ra(t_list *a);
+void	rb(t_list *b);
+void	rr(t_list *a, t_list *b);
+void	rra(t_list *a);
+void	rrb(t_list *b);
+void	rrr(t_list *a, t_list *b);
 
 #endif

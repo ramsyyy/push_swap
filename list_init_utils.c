@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:13:23 by raaga             #+#    #+#             */
-/*   Updated: 2022/01/26 20:46:49 by raaga            ###   ########.fr       */
+/*   Updated: 2022/01/31 21:37:48 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	back_to_start(t_list **a)
 {
-	if (a == NULL)
+	if (*a == NULL)
 	{
 		if ((*a)->next != NULL)
 			*a = (*a)->next;
@@ -22,10 +22,10 @@ void	back_to_start(t_list **a)
 			*a = (*a)->prev;
 		return ;
 	}
-	while (a != NULL)
+	while (*a != NULL)
 	{
 		if ((*a)->prev == NULL)
-			break;
+			break ;
 		*a = (*a)->prev;
 	}
 }
@@ -43,7 +43,7 @@ void	go_to_end(t_list **a)
 	while (*a != NULL)
 	{
 		if ((*a)->next == NULL)
-			break;
+			break ;
 		*a = (*a)->next;
 	}
 }

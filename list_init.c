@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 16:45:07 by raaga             #+#    #+#             */
-/*   Updated: 2022/01/28 16:29:57 by raaga            ###   ########.fr       */
+/*   Updated: 2022/01/31 18:39:18 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	display_list(t_list *a)
 		{
 			printf("%d\n", a->nb);
 			if (a->next == NULL)
-				break;
+				break ;
 			a = a->next;
 		}
 		return ;

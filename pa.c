@@ -6,13 +6,13 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 15:50:19 by raaga             #+#    #+#             */
-/*   Updated: 2022/01/28 21:57:27 by raaga            ###   ########.fr       */
+/*   Updated: 2022/01/31 22:47:45 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pb(t_list **b, t_list **a)
+void	ft_pb(t_list **b, t_list **a)
 {
 	t_list	*tmp;
 
@@ -31,10 +31,12 @@ void	pb(t_list **b, t_list **a)
 	}
 	else
 	{
+		back_to_start(b);
 		tmp = *b;
 		*b = (*b)->prev;
 		*b = ft_lstnew((*a)->nb);
 		(*b)->next = tmp;
+		(*b)->next->prev = *b;
 		if ((*a)->next != NULL)
 		{
 			*a = (*a)->next;
@@ -45,7 +47,7 @@ void	pb(t_list **b, t_list **a)
 	}
 }
 
-void	ra(t_list **a)
+void	ft_ra(t_list **a)
 {
 	t_list	*tmp;
 
@@ -64,33 +66,21 @@ void	ra(t_list **a)
 	free(tmp);
 }
 
-void	rr(t_list **a, t_list **b)
+void	ft_rra(t_list **a)
 {
-	ra(a);
-	ra(b);
-}
-
-void	rra(t_list **a)
-{
-	t_list	*tmp;
+	int	tmp;
 
 	if ((*a) == NULL)
 		return ;
 	if ((*a)->next != NULL)
 		go_to_end(a);
-	tmp = *a;
+	tmp = (*a)->nb;
 	back_to_start(a);
-	(*a)->prev = ft_lstnew(tmp->nb);
+	(*a)->prev = ft_lstnew(tmp);
 	(*a)->prev->next = *a;
 	(*a)->prev->prev = NULL;
 	go_to_end(a);
 	*a = (*a)->prev;
 	(*a)->next = NULL;
-	free(tmp);
-}
-
-void	rrr(t_list **a, t_list **b)
-{
-	rra(a);
-	rra(b);
+	back_to_start(a);
 }
