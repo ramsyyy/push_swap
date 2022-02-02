@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:07:04 by raaga             #+#    #+#             */
-/*   Updated: 2022/01/28 21:54:48 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/02 21:40:11 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	if_neg(char *str, int i)
 	{
 		tmp = i - 1;
 		if (str[tmp] == ' ' && ft_isdigit(str[i + 1]))
-		return (1);
+				return (1);
 	}
 	else
 	{
@@ -63,6 +63,8 @@ static int	check_numbers(char *str)
 		}
 		else if (str[i] == ' ')
 			i++;
+		else if (str[i] == ',' && str[i + 1] == ' ')
+				i++;
 		else if (str[i] == '-')
 		{
 			if (!if_neg(str, i))
