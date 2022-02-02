@@ -18,7 +18,7 @@ SRC = main.c
 
 PARSING = ./parsing/check_arg.c
 
-UTILS = ./sa.c ./pa.c ./ft_split_mod.c ./list_init.c ./list_init_utils.c ./operations.c ./operation_2.c
+UTILS = ./sa.c ./pa.c ./ft_split_mod.c ./list_init.c ./list_init_utils.c ./operations.c ./operation_2.c ./check_val_list.c
 
 all : $(NAME)
 

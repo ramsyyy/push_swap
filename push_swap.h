@@ -15,6 +15,14 @@ struct s_list
 	t_list *next;
 };
 
+typedef struct s_moy t_moy;
+struct s_moy
+{
+	int	taille;
+	int	total;
+	int	moy;
+};
+
 char	**ft_split_mod(char const *s, char c, char *str);
 int		check_arg(int argc, char **argv);
 char	**list_atoi(char **argv);
@@ -36,11 +44,16 @@ void	sb(t_list *b);
 void	ss(t_list *a, t_list *b);
 void	pa(t_list **a, t_list **b);
 void	pb(t_list **b, t_list **a);
-void	ra(t_list *a);
-void	rb(t_list *b);
-void	rr(t_list *a, t_list *b);
-void	rra(t_list *a);
-void	rrb(t_list *b);
-void	rrr(t_list *a, t_list *b);
+void	ra(t_list **a);
+void	rb(t_list **b);
+void	rr(t_list **a, t_list **b);
+void	rra(t_list **a);
+void	rrb(t_list **b);
+void	rrr(t_list **a, t_list **b);
+
+int		taille_list(t_list *a);
+int		addition_list(t_list *a);
+int		moyen_list(t_list *a);
+void	algo(t_list **a, t_list **b);
 
 #endif

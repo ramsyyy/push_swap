@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 16:45:07 by raaga             #+#    #+#             */
-/*   Updated: 2022/01/31 18:39:18 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/02 17:39:02 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@ t_list	*ft_lstnew(int nb)
 
 	new = malloc(sizeof(t_list));
 	new->nb = nb;
+	new->next = NULL;
+	new->prev = NULL;
 	return (new);
 }
 
 char	**list_atoi(char **argv)
 {
 	char **split;
-	
+
 	split = ft_split_mod(argv[1], ' ', argv[0]);
 	return (split);
 }
@@ -92,16 +94,19 @@ void	display_list(t_list *a)
 	{
 		while (a != NULL)
 		{
-			printf("%d\n", a->nb);
+			ft_printf("%d\n", a->nb);
 			if (a->next == NULL)
 				break ;
 			a = a->next;
+
 		}
 		return ;
 	}
+
 	else
 	{
 		back_to_start(&a);
 		display_list(a);
 	}
+
 }

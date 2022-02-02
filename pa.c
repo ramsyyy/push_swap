@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 15:50:19 by raaga             #+#    #+#             */
-/*   Updated: 2022/01/31 22:47:45 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/02 17:42:51 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ void	ft_pb(t_list **b, t_list **a)
 			(*a)->prev = NULL;
 		}
 		else
-			*a = NULL;
+		{
+			tmp  = *a;
+			(*a) = (*a)->next;
+			(*a)->prev = NULL;
+		}
 	}
 	else
 	{
@@ -63,7 +67,7 @@ void	ft_ra(t_list **a)
 	back_to_start(a);
 	*a = (*a)->next;
 	(*a)->prev = NULL;
-	free(tmp);
+	free((*a)->prev);
 }
 
 void	ft_rra(t_list **a)
