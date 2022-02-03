@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 15:15:24 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/02 21:30:15 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/03 20:06:50 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,55 +124,26 @@ int	list_dernier(t_list *a)
 	return (tmp);
 }
 
-
-void	petit(t_list **a, t_list **b, t_moy x)
+/*
+int	max_b(t_list *b)
 {
-	while (check_list(*a, *b) == 0)
+	int	tmp;
+	int	i;
+
+	tmp = 0;
+	i = 0;
+	while (b != NULL)
 	{
-		while (check_list_a(*a) == 0)
+		if (b->nb > tmp)
 		{
-			if (*b != NULL)
-			{
-				if ((*b)->next != NULL)
-				{
-					if ((*b)->nb < (*b)->next->nb && (*a)->nb > (*a)->next->nb)
-						ss(*a, *b);
-					if ((*a)->nb > list_dernier(*a) && (*b)->nb < list_dernier(*b))
-					{
-						rrr(a, b);
-					}
-					if ((*a)->nb > x.moy && (*b)->nb > x.moy)
-						rr(a, b);
-				}
-			}
-			if (((*a)->nb > (*a)->next->nb && (*a)->next->nb > list_dernier(*a)) || ((*a)->nb < (*a)->next->nb && (*a)->nb < list_dernier(*a))  || ((*a)->nb > (*a)->next->nb && (*a)->nb < list_dernier(*a)))
-				sa(*a);
-			else if ((*a)->nb > list_dernier(*a) && (*a)->nb < (*a)->next->nb)
-				rra(a);
-			else if ((*a)->nb > list_dernier(*a))
-				ra(a);
-			if (check_list_a(*a) != 0)
-				break ;
-			if ((*a)->nb < (*a)->next->nb && (*a)->nb < list_dernier(*a))
-				pb(b, a);
-			back_to_start(a);
-			if (b != NULL)
-				back_to_start(b);
+			i++;
+			tmp = b->nb;
 		}
-		if (check_list_b(*b) == 0)
-		{
-			if ((*b)->nb < (*b)->next->nb)
-				sb(*b);
-			else if ((*b)->nb < list_dernier(*b))
-			{
-				rrb(b);
-				back_to_start(b);
-			}
-		}
-		if (*b != NULL)
-			pa(a, b);
+		if (b->next == NULL)
+			break ;
+		b = b->next;	
 	}
-}
+}*/
 
 void	algo(t_list **a, t_list **b)
 {
@@ -181,5 +152,18 @@ void	algo(t_list **a, t_list **b)
 	x.taille = taille_list(*a);
 	x.total = addition_list(*a);
 	x.moy = moyen_list(*a);
-	petit(a, b, x);
+	if (x.taille <= 3)
+	{
+		petit(a, b);
+	}
+	else if (x.taille <= 5)
+	{
+		while (taille_list(*a) != 3)
+			pb(b, a);
+		petit(a, b);
+	}
+	else if (x.taille <= 200)
+	{
+		petit(a, b);
+	}
 }

@@ -1,34 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   moyen.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/22 13:12:23 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/03 20:14:05 by raaga            ###   ########.fr       */
+/*   Created: 2022/02/03 17:41:03 by raaga             #+#    #+#             */
+/*   Updated: 2022/02/03 20:14:46 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-int	main(int argc, char **argv)
+int	max(t_list *a)
 {
-	t_list	*a;
-	t_list	*b;
+	int	max;
+	int	i;
 
-	(void)b;
-	(void)a;
-	if (check_arg(argc, argv) == -1)
+	i = 0;
+	max = 0;
+	while (a != NULL)
 	{
-		ft_printf("error\n");
-		return (0);
+		if (a->next == NULL)
+		{
+			break ;
+		}
+		if (max < a->nb)
+		{
+			i++;
+			max = a->nb;
+		}
+		a = a->next;
 	}
-	b = NULL;
-	a = list_init(argc, argv);
-	moyen(&a, &b);
-	//algo(&a, &b);
-	//display_list(b);
-	//display_list(a);
+	return (i);
+}
+
+void	moyen(t_list **a, t_list **b)
+{
+	int	i;
+	while (check_list(*a, *b) == 0)
+	{
+		i = max(*a);
+		if (i < taille_list(*a)/2)
+		{
+			while (i > 0)
+			{
+				ra(a);
+			}
+			pb(b, a);
+		}
+		display_list(*b);
+	}
 }
