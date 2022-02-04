@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 15:15:24 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/03 20:06:50 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/04 18:18:32 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ int	taille_list(t_list *a)
 {
 	int	x;
 
-	x = 1;
+	x = 0;
 	while (a != NULL)
-	{
+	{	
+		x++;
 		if (a->next == NULL)
 			break ;
 		a = a->next;
-		x++;
 	}
 	return (x);
 }
@@ -153,17 +153,13 @@ void	algo(t_list **a, t_list **b)
 	x.total = addition_list(*a);
 	x.moy = moyen_list(*a);
 	if (x.taille <= 3)
-	{
 		petit(a, b);
-	}
 	else if (x.taille <= 5)
 	{
-		while (taille_list(*a) != 3)
-			pb(b, a);
-		petit(a, b);
+		moyen(a, b);
 	}
 	else if (x.taille <= 200)
 	{
-		petit(a, b);
+		grand(a, b);
 	}
 }
