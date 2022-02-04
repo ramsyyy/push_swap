@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:41:03 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/04 21:56:28 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/04 22:05:36 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,12 +142,13 @@ void	moyen(t_list **a, t_list **b)
 					pb(b, a);
 				}
 			}
-			if (*b != NULL && (*b)->next != NULL && check_list_b(*b) == 0)
+			if (*b != NULL && (*b)->next != NULL && check_list_b(*b) == 0 && (*b)->nb < (*b)->next->nb)
+					sb(*b);
+			else if (*b != NULL && (*b)->next != NULL && check_list_b(*b) == 0)
 			{
 				rb(b);
 			}
-			else if (*b != NULL && (*b)->next != NULL && check_list_b(*b) == 0 && (*b)->nb < (*b)->next->nb)
-					sb(*b);
+			
 		}
 		display_list(*b);
 		petit(a, b);

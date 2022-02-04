@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 18:16:29 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/04 22:03:22 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/04 22:05:53 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,18 +106,15 @@ void	grand(t_list **a, t_list **b)
 						pb(b, a);
 					}
 				}
-				
 				if (*b != NULL && (*b)->next != NULL && check_list_b(*b) == 0 && (*b)->nb < (*b)->next->nb)
 					sb(*b);
 				else if (*b != NULL && (*b)->next != NULL && check_list_b(*b) == 0 && (*b)->nb < list_dernier(*b)) 
 				{
 					rb(b);
-					ft_printf("aaaaaaaaaaaaaaa = %d\n", (*b)->nb);
 				}
 			
 				
 			}
-			display_list(*b);
 			moyen(a, b);
 		}
 	}
