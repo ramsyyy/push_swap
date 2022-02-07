@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:41:03 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/04 22:05:36 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/07 21:15:49 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ int	min_first(t_list *a)
 
 	pos = 0;
 	i = 1;
+	tmp = a->nb;
 	while (a != NULL)
 	{
-		if (i == 1)
-			tmp = a->nb;
 		if (tmp >= a->nb)
 		{
 			pos = i;
@@ -47,14 +46,17 @@ int	min_second(t_list *a)
 	min = min_first(a);
 	pos = 1;
 	i = 1;
-	tmp = a->nb;
+	if (min != 1)
+		tmp = a->nb;
+	else
+		tmp = a->next->nb;
 	while (a != NULL)
 	{	
-		if (a->next == NULL)
-			break ;
 		if (i == min)
 		{
 			i++;
+			if (a->next == NULL)
+				break ;
 			a = a->next;
 		}
 		if (tmp >= a->nb)
@@ -62,10 +64,34 @@ int	min_second(t_list *a)
 			pos = i;
 			tmp = a->nb;
 		}
+		if (a->next == NULL)
+			break ;
 		a = a->next;
 		i++;
 	}
 	return (pos);
+}
+
+void	push_min(t_list **a, t_list **b, int min)
+{
+	if (min > taille_list(*a) / 2)
+	{
+		while (min <= taille_list(*a))
+		{
+			rra(a);
+			min++;
+		}
+		pb(b, a);
+	}
+	else
+	{
+		while (min > 1)
+		{
+			ra(a);
+			min--;
+		}
+		pb(b, a);
+	}
 }
 
 void	moyen(t_list **a, t_list **b)
@@ -79,70 +105,21 @@ void	moyen(t_list **a, t_list **b)
 		{
 			first = min_first(*a);
 			second = min_second(*a);
-			if (taille_list(*a) == 4)
+			if (taille_list(*a) == 5)
 			{
-				if (first > taille_list(*a) / 2)
-				{
-					while (first <= taille_list(*a))
-					{
-						rra(a);
-						first++;
-					}
-					pb(b, a);
-				}
-				else
-				{
-					while (first > 1)
-					{
-						ra(a);
-						first--;
-					}
-					pb(b, a);
-				}
+				push_min(a, b ,first);
 			}
 			else if (distance(first, *a) <= distance(second, *a))
 			{
-				if (first > taille_list(*a) / 2)
-				{
-					while (first <= taille_list(*a))
-					{
-						rra(a);
-						first++;
-					}
-					pb(b, a);
-				}
-				else
-				{
-					while (first > 1)
-					{
-						ra(a);
-						first--;
-					}
-					pb(b, a);
-				}
+				push_min(a, b, first);
 			}
 			else
 			{
-				if (second > taille_list(*a) / 2)
-				{
-					while (second <= taille_list(*a))
-					{
-						rra(a);
-						second++;
-					}
-					pb(b, a);
-				}
-				else
-				{
-					while (second > 1)
-					{
-						ra(a);
-						second--;
-					}
-					pb(b, a);
-				}
+				push_min(a, b, second);
+				first = min_first(*a);
+				push_min(a, b, first);
 			}
-			if (*b != NULL && (*b)->next != NULL && check_list_b(*b) == 0 && (*b)->nb < (*b)->next->nb)
+			if (*b != NULL && (*b)->next != NULL && check_list_b(*b) == 0 && (*b)->nb < (*b)->next->nb && (*b)->nb > list_dernier(*b))
 					sb(*b);
 			else if (*b != NULL && (*b)->next != NULL && check_list_b(*b) == 0)
 			{
@@ -150,7 +127,7 @@ void	moyen(t_list **a, t_list **b)
 			}
 			
 		}
-		display_list(*b);
+		//display_list(*b);
 		petit(a, b);
 		while (taille_list(*b) > 0)
 			pa(a, b);

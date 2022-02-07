@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 18:16:29 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/04 22:05:53 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/07 21:16:52 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,66 +54,41 @@ void	grand(t_list **a, t_list **b)
 	int	first;
 	int	second;
 
-	first = min_first(*a);
-	second = min_second(*a);
+	
 	if (check_list(*a, *b) == 0)
 	{
 		if (check_list_a(*a) == 0)
 		{
-			while (taille_list(*a) > 5)
+			while (taille_list(*a) >= 5)
 			{
 				first = min_first(*a);
 				second = min_second(*a);
-				if (distance(first, *a) < distance(second, *a))
+				if (*b != NULL)
 				{
-					if (first > taille_list(*a) / 2)
+					if (second == 1 && (*a)->nb == (*b)->nb + 1 && taille_list(*a) > 6)
 					{
-						while (first <= taille_list(*a))
-						{
-							rra(a);
-							first++;
-						}
 						pb(b, a);
-					}
-					else
-					{
-						while (first > 1)
-						{
-							ra(a);
-							first--;
-						}
-						pb(b, a);
-					}
+						second = min_second(*a);	
+					}	
+				}
+				if (distance(first, *a) <= distance(second, *a))
+				{
+					push_min(a, b, first);
 				}
 				else
 				{
-					if (second > taille_list(*a) / 2)
-					{
-						while (second <= taille_list(*a))
-						{
-							rra(a);
-							second++;
-						}
-						pb(b, a);
-					}
-					else
-					{
-						while (second > 1)
-						{
-							ra(a);
-							second--;
-						}
-						pb(b, a);
-					}
+					push_min(a, b, second);
+					first = min_first(*a);
+					push_min(a, b, first);
 				}
-				if (*b != NULL && (*b)->next != NULL && check_list_b(*b) == 0 && (*b)->nb < (*b)->next->nb)
+				if (*b != NULL && (*b)->next != NULL && check_list_b(*b) == 0 && (*b)->nb < (*b)->next->nb && (*b)->nb > list_dernier(*b))
+				{
 					sb(*b);
+				}
 				else if (*b != NULL && (*b)->next != NULL && check_list_b(*b) == 0 && (*b)->nb < list_dernier(*b)) 
 				{
 					rb(b);
 				}
-			
-				
 			}
 			moyen(a, b);
 		}

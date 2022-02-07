@@ -67,5 +67,6 @@ int	list_dernier(t_list *a);
 int	check_list_b(t_list *a);
 int	check_list_a(t_list *a);
 int	check_list(t_list *a, t_list *b);
+void	push_min(t_list **a, t_list **b, int min);
 
 #endif

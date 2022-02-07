@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 15:15:24 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/04 18:18:32 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/07 21:19:16 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ void	algo(t_list **a, t_list **b)
 	{
 		moyen(a, b);
 	}
-	else if (x.taille <= 200)
+	else if (x.taille >= 100)
 	{
 		grand(a, b);
 	}

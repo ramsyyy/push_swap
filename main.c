@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 13:12:23 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/04 21:40:38 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/07 21:16:23 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int argc, char **argv)
 	}
 	b = NULL;
 	a = list_init(argc, argv);
+	//display_list(a);
 	algo(&a, &b);
-	display_list(a);
+	//display_list(a);
 }
