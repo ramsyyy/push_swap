@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 18:16:29 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/07 21:16:52 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/08 20:19:28 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ int	list_i(t_list *a, int	place)
 	return (a->nb);
 }
 
-void	grand(t_list **a, t_list **b)
+void	grand(t_list **a, t_list **b, t_moy x)
 {
 	int	first;
 	int	second;
 
-	
+	(void)x;
 	if (check_list(*a, *b) == 0)
 	{
 		if (check_list_a(*a) == 0)
@@ -62,18 +62,23 @@ void	grand(t_list **a, t_list **b)
 			while (taille_list(*a) >= 5)
 			{
 				first = min_first(*a);
-				second = min_second(*a);
-				if (*b != NULL)
-				{
-					if (second == 1 && (*a)->nb == (*b)->nb + 1 && taille_list(*a) > 6)
-					{
-						pb(b, a);
-						second = min_second(*a);	
-					}	
-				}
+				second = min_second(*a);				
 				if (distance(first, *a) <= distance(second, *a))
 				{
 					push_min(a, b, first);
+					/*if (*b != NULL)
+					{
+						if ((*b)->nb < list_dernier(*b))
+							rb(b);
+						else if ((*b)->nb < (*b)->next->nb && (*b)->nb > (*b)->)
+							sb (*b);
+						else if ((*b)->nb < (*b)->next->nb && (*b)->next->next->nb > (*b)->nb)
+						{
+							sb(*b);
+							pa(a, b);
+							sb(*b);
+						}
+					}*/
 				}
 				else
 				{
@@ -83,7 +88,10 @@ void	grand(t_list **a, t_list **b)
 				}
 				if (*b != NULL && (*b)->next != NULL && check_list_b(*b) == 0 && (*b)->nb < (*b)->next->nb && (*b)->nb > list_dernier(*b))
 				{
-					sb(*b);
+					if ((*a)->next != NULL && (*a)->nb > (*a)->next->nb)
+						ss(*a, *b);
+					else
+						sb(*b);
 				}
 				else if (*b != NULL && (*b)->next != NULL && check_list_b(*b) == 0 && (*b)->nb < list_dernier(*b)) 
 				{

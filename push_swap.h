@@ -57,7 +57,7 @@ int		moyen_list(t_list *a);
 void	algo(t_list **a, t_list **b);
 void	petit(t_list **a, t_list **b);
 void	moyen(t_list **a, t_list **b);
-void	grand(t_list **a, t_list **b);
+void	grand(t_list **a, t_list **b, t_moy x);
 
 int	min_first(t_list *a);
 int	min_second(t_list *a);
