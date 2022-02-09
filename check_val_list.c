@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 15:15:24 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/08 19:10:07 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/09 19:50:38 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	check_list(t_list *a, t_list *b)
 	if (b != NULL)
 		return (0);
 	(void)b;
+	if (a == NULL)
+		return (0);
 	if (a->prev != NULL)
 		back_to_start(&a);
 	while (a != NULL)
@@ -160,6 +162,6 @@ void	algo(t_list **a, t_list **b)
 	}
 	else if (x.taille >= 6)
 	{
-		grand(a, b, x);
+		grand2(a, b);
 	}
 }

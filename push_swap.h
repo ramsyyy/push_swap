@@ -58,6 +58,7 @@ void	algo(t_list **a, t_list **b);
 void	petit(t_list **a, t_list **b);
 void	moyen(t_list **a, t_list **b);
 void	grand(t_list **a, t_list **b, t_moy x);
+void    grand2(t_list **a, t_list **b);
 
 int	min_first(t_list *a);
 int	min_second(t_list *a);
@@ -68,5 +69,10 @@ int	check_list_b(t_list *a);
 int	check_list_a(t_list *a);
 int	check_list(t_list *a, t_list *b);
 void	push_min(t_list **a, t_list **b, int min);
+int	verif_b(int nb, t_list *b);
+int	nb_index(t_list *a, int index);
+int	list_i(t_list *a, int	place);
+int distance_place(t_list *b, int nb);
+void	push_min_second(t_list **a, t_list **b, int min);
 
 #endif

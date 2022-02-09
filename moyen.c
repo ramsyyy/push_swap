@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:41:03 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/07 21:15:49 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/09 22:04:30 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,11 @@ int	min_second(t_list *a)
 	return (pos);
 }
 
-void	push_min(t_list **a, t_list **b, int min)
+void	push_min_second(t_list **a, t_list **b, int min)
 {
+	int	tmp;
+	if (*a == NULL)
+		return ;
 	if (min > taille_list(*a) / 2)
 	{
 		while (min <= taille_list(*a))
@@ -81,7 +84,42 @@ void	push_min(t_list **a, t_list **b, int min)
 			rra(a);
 			min++;
 		}
-		pb(b, a);
+		if ((*a)->nb < (*b)->next->nb)
+		{
+			tmp = distance_place(*b, (*a)->nb) + 1;
+			if (tmp == 1)
+			{
+				if ((*a)->nb < (*b)->nb && (*a)->nb > (*b)->next->nb)
+				{
+					pb(b, a);
+					sb(*b);
+				}
+			}
+			else if (distance_place(*b, (*a)->nb) <= taille_list(*b) / 2)
+			{
+				while ((*a)->nb < (*b)->nb)
+					rb(b);
+				if ((*a)->nb > (*b)->nb)
+					pb(b, a);
+				while (tmp > 1)
+				{
+					rrb(b);
+					tmp--;
+				}
+			}
+			else if (distance_place(*b, (*a)->nb) > taille_list(*b) / 2)
+			{
+				while ((*a)->nb > (*b)->nb)
+					rrb(b);
+				if ((*a)->nb > (*b)->nb)
+					pb(b, a);
+				while (tmp > 1)
+				{
+					rb(b);
+					tmp--;
+				}
+			}
+		}
 	}
 	else
 	{
@@ -90,9 +128,167 @@ void	push_min(t_list **a, t_list **b, int min)
 			ra(a);
 			min--;
 		}
-		pb(b, a);
+		if ((*a)->nb < (*b)->next->nb)
+		{
+			tmp = distance_place(*b, (*a)->nb) + 1;
+			if (tmp == 1)
+			{
+				if ((*a)->nb < (*b)->nb && (*a)->nb > (*b)->next->nb)
+				{
+					pb(b, a);
+					sb(*b);
+				}
+			}
+			else if (distance_place(*b, (*a)->nb) <= taille_list(*b) / 2)
+			{
+				while ((*a)->nb < (*b)->nb)
+					rb(b);
+				if ((*a)->nb > (*b)->nb)
+					pb(b, a);
+				while (tmp > 1)
+				{
+					rrb(b);
+					tmp--;
+				}
+			}
+			else if (distance_place(*b, (*a)->nb) > taille_list(*b) / 2)
+			{
+				while ((*a)->nb > (*b)->nb)
+					rrb(b);
+				if ((*a)->nb > (*b)->nb || (*a)->nb <list_dernier(*b))
+					pb(b, a);
+				while (tmp > 1)
+				{
+					rb(b);
+					tmp--;
+				}
+			}
+		}
 	}
 }
+
+void	push_min(t_list **a, t_list **b, int min)
+{
+	int	tmp;
+	if (*a == NULL)
+		return ;
+	if (min > taille_list(*a) / 2)
+	{
+		while (min <= taille_list(*a))
+		{
+			rra(a);
+			min++;
+		}
+		if ((*a)->nb < nb_index(*b, min_first(*b)))
+		{
+			tmp = min_first(*b);
+			ft_printf("QWEQWEQ = %d\n", nb_index((*b), tmp));
+			if (min_first(*b) >= taille_list(*b) / 2)
+			{
+				while (tmp != taille_list(*b))
+				{
+					rrb(b);
+					tmp++;
+				}
+				pb(b, a);
+				tmp = nb_index(*b, min_first(*b));
+				while (list_dernier(*b) != tmp)
+					rb(b);
+			}
+			else
+			{
+				while (tmp != 1)
+					rb(b);
+				pb(b, a);
+				tmp = nb_index(*b, min_first(*b));
+				while (list_dernier(*b) != tmp)
+					rrb(b);
+			}
+		}
+		if ((*a)->nb < (*b)->next->nb)
+		{
+			tmp = distance_place(*b, (*a)->nb) + 1;
+			if (tmp == 1)
+			{
+				if ((*a)->nb < (*b)->nb && (*a)->nb > (*b)->next->nb)
+				{
+					pb(b, a);
+					sb(*b);
+				}
+			}
+			else if (distance_place(*b, (*a)->nb) <= taille_list(*b) / 2)
+			{
+				while ((*a)->nb < (*b)->nb)
+					rb(b);
+				if ((*a)->nb > (*b)->nb)
+					pb(b, a);
+				while (tmp > 1)
+				{
+					rrb(b);
+					tmp--;
+				}
+			}
+			else if (distance_place(*b, (*a)->nb) > taille_list(*b) / 2)
+			{
+				while ((*a)->nb > (*b)->nb)
+					rrb(b);
+				if ((*a)->nb > (*b)->nb)
+					pb(b, a);
+				while (tmp > 1)
+				{
+					rb(b);
+					tmp--;
+				}
+			}
+		}
+	}
+	else
+	{
+		while (min > 1)
+		{
+			ra(a);
+			min--;
+		}
+		if ((*a)->nb < (*b)->next->nb)
+		{
+			tmp = distance_place(*b, (*a)->nb) + 1;
+			if (tmp == 1)
+			{
+				if ((*a)->nb < (*b)->nb && (*a)->nb > (*b)->next->nb)
+				{
+					pb(b, a);
+					sb(*b);
+				}
+			}
+			else if (distance_place(*b, (*a)->nb) <= taille_list(*b) / 2)
+			{
+				while ((*a)->nb < (*b)->nb)
+					rb(b);
+				if ((*a)->nb > (*b)->nb)
+					pb(b, a);
+				while (tmp > 1)
+				{
+					rrb(b);
+					tmp--;
+				}
+			}
+			else if (distance_place(*b, (*a)->nb) > taille_list(*b) / 2)
+			{
+				while ((*a)->nb > (*b)->nb)
+					rrb(b);
+				if ((*a)->nb > (*b)->nb || (*a)->nb <list_dernier(*b))
+					pb(b, a);
+				while (tmp > 1)
+				{
+					rb(b);
+					tmp--;
+				}
+			}
+		}
+	}
+}
+
+
 
 void	moyen(t_list **a, t_list **b)
 {
@@ -130,6 +326,10 @@ void	moyen(t_list **a, t_list **b)
 		//display_list(*b);
 		petit(a, b);
 		while (taille_list(*b) > 0)
+		{
 			pa(a, b);
+			if ((*a)->nb > list_dernier(*a))
+				ra(a);
+		}
 	}
 }
