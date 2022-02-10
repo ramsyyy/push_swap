@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   grand.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ramsy <ramsy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 18:16:29 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/09 20:31:50 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/10 03:13:52 by ramsy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,12 @@ int	verif_b(int nb, t_list *b)
 
 
 
-void	grand(t_list **a, t_list **b, t_moy x)
+void	grand(t_list **a, t_list **b)
 {
 	int	first;
 	int	second;
 	int	i;
 
-	(void)x;
 	while (check_list(*a, *b) == 0)
 	{
 		if (check_list_a(*a) == 0)

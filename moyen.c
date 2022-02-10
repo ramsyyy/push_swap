@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moyen.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ramsy <ramsy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:41:03 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/09 22:04:30 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/10 03:08:42 by ramsy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	push_min_second(t_list **a, t_list **b, int min)
 			{
 				while ((*a)->nb < (*b)->nb)
 					rb(b);
-				if ((*a)->nb > (*b)->nb)
+				//if ((*a)->nb > (*b)->nb)
 					pb(b, a);
 				while (tmp > 1)
 				{
@@ -111,7 +111,7 @@ void	push_min_second(t_list **a, t_list **b, int min)
 			{
 				while ((*a)->nb > (*b)->nb)
 					rrb(b);
-				if ((*a)->nb > (*b)->nb)
+				//if ((*a)->nb > (*b)->nb)
 					pb(b, a);
 				while (tmp > 1)
 				{
@@ -143,7 +143,7 @@ void	push_min_second(t_list **a, t_list **b, int min)
 			{
 				while ((*a)->nb < (*b)->nb)
 					rb(b);
-				if ((*a)->nb > (*b)->nb)
+				//if ((*a)->nb > (*b)->nb)
 					pb(b, a);
 				while (tmp > 1)
 				{
@@ -155,7 +155,7 @@ void	push_min_second(t_list **a, t_list **b, int min)
 			{
 				while ((*a)->nb > (*b)->nb)
 					rrb(b);
-				if ((*a)->nb > (*b)->nb || (*a)->nb <list_dernier(*b))
+				//if ((*a)->nb > (*b)->nb || (*a)->nb <list_dernier(*b))
 					pb(b, a);
 				while (tmp > 1)
 				{
@@ -167,7 +167,7 @@ void	push_min_second(t_list **a, t_list **b, int min)
 	}
 }
 
-void	push_min(t_list **a, t_list **b, int min)
+/*void	push_min(t_list **a, t_list **b, int min)
 {
 	int	tmp;
 	if (*a == NULL)
@@ -182,7 +182,11 @@ void	push_min(t_list **a, t_list **b, int min)
 		if ((*a)->nb < nb_index(*b, min_first(*b)))
 		{
 			tmp = min_first(*b);
-			ft_printf("QWEQWEQ = %d\n", nb_index((*b), tmp));
+			if (tmp == taille_list(*b))
+			{
+				pb(b, a);
+				rb(b);
+			}
 			if (min_first(*b) >= taille_list(*b) / 2)
 			{
 				while (tmp != taille_list(*b))
@@ -220,7 +224,7 @@ void	push_min(t_list **a, t_list **b, int min)
 			{
 				while ((*a)->nb < (*b)->nb)
 					rb(b);
-				if ((*a)->nb > (*b)->nb)
+				//if ((*a)->nb > (*b)->nb)
 					pb(b, a);
 				while (tmp > 1)
 				{
@@ -264,7 +268,7 @@ void	push_min(t_list **a, t_list **b, int min)
 			{
 				while ((*a)->nb < (*b)->nb)
 					rb(b);
-				if ((*a)->nb > (*b)->nb)
+				//if ((*a)->nb > (*b)->nb)
 					pb(b, a);
 				while (tmp > 1)
 				{
@@ -276,7 +280,7 @@ void	push_min(t_list **a, t_list **b, int min)
 			{
 				while ((*a)->nb > (*b)->nb)
 					rrb(b);
-				if ((*a)->nb > (*b)->nb || (*a)->nb <list_dernier(*b))
+				//if ((*a)->nb > (*b)->nb || (*a)->nb <list_dernier(*b))
 					pb(b, a);
 				while (tmp > 1)
 				{
@@ -285,6 +289,28 @@ void	push_min(t_list **a, t_list **b, int min)
 				}
 			}
 		}
+	}
+}*/
+
+void	push_min(t_list **a, t_list **b, int min)
+{
+	if (min > taille_list(*a) / 2)
+	{
+		while (min <= taille_list(*a))
+		{
+			rra(a);
+			min++;
+		}
+		pb(b, a);
+	}
+	else
+	{
+		while (min > 1)
+		{
+			ra(a);
+			min--;
+		}
+		pb(b, a);
 	}
 }
 
