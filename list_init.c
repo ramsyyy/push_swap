@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 16:45:07 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/02 17:39:02 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/10 14:54:53 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_list	*ft_lstnew(int nb)
 
 	new = malloc(sizeof(t_list));
 	new->nb = nb;
+	new->mouv = 0;
 	new->next = NULL;
 	new->prev = NULL;
 	return (new);

@@ -13,6 +13,7 @@ struct s_list
 	int nb;
 	t_list *prev;
 	t_list *next;
+	int	mouv;
 };
 
 typedef struct s_moy t_moy;
@@ -22,6 +23,16 @@ struct s_moy
 	int	total;
 	int	moy;
 };
+
+typedef struct s_chunk chunk;
+struct s_chunk{
+
+	int	*chunk1;
+	int	*chunk2;
+	int	*chunk3;
+	int	*chunk4;
+	int	*chunk5;
+}
 
 char	**ft_split_mod(char const *s, char c, char *str);
 int		check_arg(int argc, char **argv);
@@ -61,6 +72,7 @@ void	grand(t_list **a, t_list **b);
 void    grand2(t_list **a, t_list **b);
 
 int	min_first(t_list *a);
+int	max_first(t_list *a);
 int	min_second(t_list *a);
 int	distance(int var, t_list *a);
 
@@ -73,6 +85,9 @@ int	verif_b(int nb, t_list *b);
 int	nb_index(t_list *a, int index);
 int	list_i(t_list *a, int	place);
 int distance_place(t_list *b, int nb);
-void	push_min_second(t_list **a, t_list **b, int min);
+int	distance_place_a(t_list *a, int	min);
+void	push_min_second(t_list **a, int min);
+int	*check_chunk(t_list *a);
+void	create_chunk(int	*tab, t_list *a);
 
 #endif

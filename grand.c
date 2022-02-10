@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   grand.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramsy <ramsy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 18:16:29 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/10 03:13:52 by ramsy            ###   ########.fr       */
+/*   Updated: 2022/02/10 20:51:02 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	nb_index(t_list *a, int index)
 {
 	int	nb;
 
-
 	while (index > 0)
 	{
 		nb = a->nb;
@@ -87,6 +86,66 @@ int	verif_b(int nb, t_list *b)
 
 
 
+int	 *check_chunk(t_list *a)
+{
+	int	min;
+	int	*tab;
+	int	size;
+	int	i;
+	int	j;
+	
+//	min = min_first(a);
+//	max = max_first(a);
+	tab = malloc(sizeof(int) * (taille_list(a) + 1));
+	if (!tab)
+	{
+		return NULL;
+	}
+	i = 0;
+	size = taille_list(a);
+	while (i < size)
+	{
+		tab[i] = a->nb;
+		if (a->next == NULL)
+			break ;
+		a = a->next;
+		i++; 
+	}
+	i = 0;
+	while (i < size)
+	{
+		j = i;
+		while (j < size)
+		{
+			if (tab[j] < tab[i])
+			{
+				min = tab[j];
+				tab[j] = tab[i];
+				tab[i] = min;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (tab);
+}
+
+void	create_chunk(int	*tab, t_list *a)
+{	
+	int	size;
+
+	size = taille_list(a);
+	size = size / 5;
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		ft_printf("%d", tab[i]);
+		i++;
+	}
+}
+
 void	grand(t_list **a, t_list **b)
 {
 	int	first;
@@ -103,7 +162,6 @@ void	grand(t_list **a, t_list **b)
 				second = min_second(*a);				
 				if (distance(first, *a) <= distance(second, *a) || taille_list(*a) - 1 == 5)
 				{
-					
 					if (*b != NULL && (*b)->next != NULL)
 					{
 						if (nb_index(*a, first) < (*b)->nb)
@@ -129,7 +187,6 @@ void	grand(t_list **a, t_list **b)
 						i = 1;
 					else 
 						i = 2;
-					//ft_printf("DDDDDDDDDDDD = %d\nQQQQQ = %d %d\n", i, distance(first, *a), taille_list(*a)/2);
 					while (*b != NULL && (*b)->next != NULL && check_list_b(*b) == 0 && (*b)->nb < list_dernier(*b))
 					{
 						if (i == 1 && first > (taille_list(*a) / 2) && first < taille_list(*a))
