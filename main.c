@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 13:12:23 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/10 20:50:49 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/11 17:25:55 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 {
 	t_list	*a;
 	t_list	*b;
-	int	*tab;
+	//int	*tab;
 
 	(void)b;
 	(void)a;
@@ -29,9 +29,9 @@ int	main(int argc, char **argv)
 	b = NULL;
 	a = list_init(argc, argv);
 	//display_list(a);
-	//algo(&a, &b);
+	algo(&a, &b);
 	//display_list(a);
-	tab = check_chunk(a);
+	//tab = check_chunk(a);
 	//(void)tab;
-	create_chunk(tab , a);
+	//create_chunk(tab , a);
 }

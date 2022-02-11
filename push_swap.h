@@ -32,7 +32,13 @@ struct s_chunk{
 	int	*chunk3;
 	int	*chunk4;
 	int	*chunk5;
-}
+};
+
+typedef struct s_tab t_tab;
+struct s_tab{
+	int *tab;
+	int size;
+};
 
 char	**ft_split_mod(char const *s, char c, char *str);
 int		check_arg(int argc, char **argv);
@@ -87,7 +93,7 @@ int	list_i(t_list *a, int	place);
 int distance_place(t_list *b, int nb);
 int	distance_place_a(t_list *a, int	min);
 void	push_min_second(t_list **a, int min);
-int	*check_chunk(t_list *a);
+t_tab	check_chunk(t_list *a);
 void	create_chunk(int	*tab, t_list *a);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 18:16:29 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/10 20:51:02 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/11 16:40:44 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,42 +86,41 @@ int	verif_b(int nb, t_list *b)
 
 
 
-int	 *check_chunk(t_list *a)
+t_tab	check_chunk(t_list *a)
 {
 	int	min;
-	int	*tab;
-	int	size;
+	t_tab	tab;
 	int	i;
 	int	j;
 	
 //	min = min_first(a);
 //	max = max_first(a);
-	tab = malloc(sizeof(int) * (taille_list(a) + 1));
-	if (!tab)
+	tab.tab = malloc(sizeof(int) * (taille_list(a) + 1));
+	tab.size = taille_list(a);
+	if (!tab.tab)
 	{
-		return NULL;
+		exit(0);
 	}
 	i = 0;
-	size = taille_list(a);
-	while (i < size)
+	while (i < tab.size)
 	{
-		tab[i] = a->nb;
+		tab.tab[i] = a->nb;
 		if (a->next == NULL)
 			break ;
 		a = a->next;
 		i++; 
 	}
 	i = 0;
-	while (i < size)
+	while (i < tab.size)
 	{
 		j = i;
-		while (j < size)
+		while (j < tab.size)
 		{
-			if (tab[j] < tab[i])
+			if (tab.tab[j] < tab.tab[i])
 			{
-				min = tab[j];
-				tab[j] = tab[i];
-				tab[i] = min;
+				min = tab.tab[j];
+				tab.tab[j] = tab.tab[i];
+				tab.tab[i] = min;
 			}
 			j++;
 		}
@@ -135,13 +134,13 @@ void	create_chunk(int	*tab, t_list *a)
 	int	size;
 
 	size = taille_list(a);
-	size = size / 5;
+	size = size / 3;
 	int	i;
 
 	i = 0;
 	while (i < size)
 	{
-		ft_printf("%d", tab[i]);
+		ft_printf("%d	", tab[i]);
 		i++;
 	}
 }
