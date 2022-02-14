@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:25:18 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/14 18:01:58 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/14 21:47:51 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int distance_place(t_list *b, int nb)
 	{
 		if (nb < b->nb)
 			i++;
-		else 
+		else
 			return (i);
 		if (b->next != NULL)
 		{
@@ -50,7 +50,7 @@ int distance_place2(t_list *b, int nb)
 	{
 		if (nb < b->nb)
 			i++;
-		else 
+		else
 			return (i);
 		if (b->next != NULL)
 		{
@@ -85,7 +85,7 @@ int	min_mouv(t_list *a)
 		{
 			a = a->next;
 			tmp++;
-		}	
+		}
 	}
 	return (pos);
 }
@@ -118,7 +118,7 @@ int	min_two(int nb, t_list *b)
 {
 	int i;
 	int	pos;
-	
+
 	i = 1;
 	pos = 1;
 	while (b != NULL)
@@ -146,7 +146,7 @@ int	min_two(int nb, t_list *b)
 						i++;
 					}
 					return (pos);
-					
+
 				}
 				else
 				{
@@ -163,7 +163,7 @@ int	max_two(int nb, t_list *b)
 {
 	int i;
 	int	pos;
-	
+
 	i = 1;
 	pos = 1;
 	while (b != NULL)
@@ -194,7 +194,7 @@ int	max_two(int nb, t_list *b)
 						i++;
 					}
 					return (pos);
-					
+
 				}
 				else
 				{
@@ -226,7 +226,7 @@ void	nb_mouv(t_list **a, t_list **b, t_tab tab)
 {
 	int	tmp;
 	int	size;
-	
+
 	tmp = 0;
 	size = taille_list(*a);
 	while (tmp < size)
@@ -254,7 +254,7 @@ void    grand2(t_list **a, t_list **b)
 		if(check_list_a(*a) == 0)
 		{
 			while (taille_list(*a) > 3)
-			{		
+			{
 				if (taille_list(*b) < 2)
 				{
 					if (nb_search(tab, (*a)->nb) == 0)
@@ -279,10 +279,9 @@ void    grand2(t_list **a, t_list **b)
 					nb_mouv(a, b, tab);
 					back_to_start(a);
 					tmp = min_mouv(*a);
-					push_min_second(a, tmp);
+					push_min_second(a, b, tmp);
 					if (*a != NULL && (*a)->nb < (*b)->nb)
 					{
-						
 						if ((*a)->nb < nb_index(*b, min_first(*b)))
 						{
 							tmp = min_first(*b);
@@ -291,24 +290,8 @@ void    grand2(t_list **a, t_list **b)
 								pb(b, a);
 								rb(b);
 							}
-							else if (tmp > taille_list(*b) / 2)
-							{
-								while (tmp < taille_list(*b))
-								{
-									rrb(b);
-									tmp++;
-								}
-								pb(b, a);
-							}
 							else
-							{
-								while (tmp >= 1)
-								{
-									rb(b);
-									tmp--;
-								}
-								pb(b, a);
-							}
+								push_min(a, b, tmp);
 						}
 						else if ((*a)->nb < (*b)->nb && (*a)->nb > (*b)->next->nb)
 						{
@@ -334,11 +317,10 @@ void    grand2(t_list **a, t_list **b)
 								tmp++;
 							}
 							pb(b, a);
-							
 						}
 					}
 					else
-					{	
+					{
 						if ((*a)->nb > nb_index(*b, max_first(*b)))
 						{
 							tmp = max_first(*b);
@@ -369,31 +351,13 @@ void    grand2(t_list **a, t_list **b)
 						else if ((*a)->nb > (*b)->nb)
 						{
 							tmp = max_two((*a)->nb, *b);
-							if (tmp > taille_list(*b) / 2)
-							{
-								while (tmp < taille_list(*b))
-								{
-									rrb(b);
-									tmp++;
-								}
-								pb(b, a);
-							}
-							else
-							{
-								while (tmp >= 1)
-								{
-									rb(b);
-									tmp--;
-								}
-								pb(b, a);
-							}
+							push_min(a, b, tmp);
 						}
-						else			
+						else
 							pb(b, a);
 					}
 				}
 			}
-			
 			tmp = min_first(*b);
 			if (nb_index(*b, tmp) != list_dernier(*b))
 			{
@@ -405,7 +369,7 @@ void    grand2(t_list **a, t_list **b)
 						tmp++;
 					}
 				}
-				else 
+				else
 				{
 					while (tmp >= 1)
 					{

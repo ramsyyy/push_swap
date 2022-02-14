@@ -92,8 +92,13 @@ int	nb_index(t_list *a, int index);
 int	list_i(t_list *a, int	place);
 int distance_place(t_list *b, int nb);
 int	distance_place_a(t_list *a, int	min);
-void	push_min_second(t_list **a, int min);
+void	push_min_second(t_list **a, t_list **b, int min);
 t_tab	check_chunk(t_list *a);
 void	create_chunk(int	*tab, t_list *a);
+int distance_place2(t_list *b, int nb);
+int	min_mouv(t_list *a);
+int	max_two(int nb, t_list *b);
+
+
 
 #endif
