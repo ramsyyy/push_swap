@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:25:18 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/11 17:26:14 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/14 18:01:58 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,98 +62,6 @@ int distance_place2(t_list *b, int nb)
 	return (i);
 }
 
-
-/*
-void    grand2(t_list **a, t_list **b)
-{
-	int	first;
-	int	second;
-	int	tmp;
-
-	while (check_list(*a, *b) == 0)
-	{
-		while (check_list_a(*a) == 0)
-		{
-			while (taille_list(*a) > 0)
-			{		
-					if (((*b == NULL || (*a)->nb > (*b)->nb) || ((*a)->nb < list_dernier(*b) && distance_place(*b, (*a)->nb) <= 1)))
-					{
-						pb(b, a);
-						if ((*b)->nb < list_dernier(*b))
-							rb(b);
-					}
-					else if (taille_list(*b) >= 1)
-					{
-						if ((*a)->nb < (*b)->nb)
-						{
-							if ((*a)->nb < nb_index(*b, min_first(*b)))
-							{
-								tmp = min_first(*b);
-								if (tmp == taille_list(*b))
-								{
-									pb(b, a);
-									rb(b);
-								}
-								else if (min_first(*b) >= taille_list(*b) / 2)
-								{
-									while (tmp <= taille_list(*b))
-									{
-										rrb(b);
-										tmp++;
-									}
-									pb(b, a);
-
-								}
-								else
-								{
-									while (tmp != 1)
-										rb(b);
-									pb(b, a);
-
-								}
-							}
-							else if (distance_place(*b, (*a)->nb) == 1)
-							{
-								if ((*a)->nb < (*b)->nb && (*a)->nb > (*b)->next->nb)
-								{
-									pb(b, a);
-									sb(*b);
-								}
-							}
-							else if (distance_place(*b, (*a)->nb) <= taille_list(*b) / 2)
-							{
-								tmp = distance_place(*b, (*a)->nb);
-								while (tmp >= 1)
-								{
-									rb(b);
-									tmp--;
-								}
-								pb(b, a);
-							}
-							else if (distance_place(*b, (*a)->nb) > taille_list(*b) / 2)
-							{
-								tmp = distance_place(*b, (*a)->nb);
-								while (tmp <= taille_list(*b) - 1)
-								{
-									rrb(b);
-									tmp++;
-								}
-								pb(b, a);
-								
-							}
-						}
-					}
-				
-			}
-			while (*b != NULL)
-				pa(a, b);
-			
-		}
-		//display_list(*b);
-		
-	}
-}*/
-
 int	min_mouv(t_list *a)
 {
 	int	i;
@@ -205,44 +113,6 @@ int	max_first(t_list *a)
 	}
 	return (pos);
 }
-/*
-int entre_deux(int	nb, t_list *b)
-{
-	int	i;
-	int	pos;
-
-	i = nb;
-	while (taille_list(b) >= 1)
-	{
-		if (i > b->nb )
-		{
-			i = b->nb;
-			while (taille_list(b) >= 1)
-			{
-				if (i < b->nb && b->nb < nb)
-				{
-					i = b->nb;
-				}
-				if (b->next == NULL)
-				{
-					if (i < b->nb && b->nb < nb)
-						pos = i;
-					return (i);
-				}
-				b = b->nb;
-			}
-		}
-		if (b->next == NULL)
-		{
-			if (i > b->nb)
-				pos = i;
-			return (pos);
-			break ;
-		}
-		b = b->next;
-	}
-	
-}*/
 
 int	min_two(int nb, t_list *b)
 {
@@ -342,10 +212,8 @@ int	nb_search(t_tab tab, int nb)
 	int i;
 
 	i = tab.size - 1;
-	//ft_printf("SIZE = %d\n",tab.size);
 	while (i > tab.size - 4)
 	{
-		//ft_printf("tab[i] = %d\n", tab.tab[i]);
 		if (nb == tab.tab[i])
 			return (1);
 		else
@@ -354,10 +222,29 @@ int	nb_search(t_tab tab, int nb)
 	return (0);
 }
 
-void    grand2(t_list **a, t_list **b)
+void	nb_mouv(t_list **a, t_list **b, t_tab tab)
 {
 	int	tmp;
 	int	size;
+	
+	tmp = 0;
+	size = taille_list(*a);
+	while (tmp < size)
+	{
+		if (nb_search(tab, (*a)->nb) == 0)
+			(*a)->mouv = distance_place_a(*a, tmp) + distance_place(*b, (*a)->nb);
+		else
+			(*a)->mouv = 3000000;
+		if ((*a)->next == NULL)
+			break ;
+		*a = (*a)->next;
+		tmp++;
+	}
+}
+
+void    grand2(t_list **a, t_list **b)
+{
+	int	tmp;
 	t_tab tab;
 
 	tab = check_chunk(*a);
@@ -389,31 +276,10 @@ void    grand2(t_list **a, t_list **b)
 				{
 					if (*a == NULL)
 						break ;
-					tmp = 0;
-					/*ft_printf("QWERTY\n");
-					display_list(*a);
-					
-					ft_printf("TAILLE\n");
-					display_list(*b);*/
-					size = taille_list(*a);
-					while (tmp < size)
-					{
-						if (nb_search(tab, (*a)->nb) == 0)
-							(*a)->mouv = distance_place_a(*a, tmp) + distance_place(*b, (*a)->nb);
-						else
-							(*a)->mouv = 3000000;
-						//ft_printf("mouv = %d = %d\n", (*a)->nb, (*a)->mouv);
-						if ((*a)->next == NULL)
-							break ;
-						*a = (*a)->next;
-						tmp++;
-					
-					}
+					nb_mouv(a, b, tab);
 					back_to_start(a);
 					tmp = min_mouv(*a);
-					
 					push_min_second(a, tmp);
-			
 					if (*a != NULL && (*a)->nb < (*b)->nb)
 					{
 						
@@ -425,7 +291,7 @@ void    grand2(t_list **a, t_list **b)
 								pb(b, a);
 								rb(b);
 							}
-							else if (min_first(*b) > taille_list(*b) / 2)
+							else if (tmp > taille_list(*b) / 2)
 							{
 								while (tmp < taille_list(*b))
 								{
@@ -444,28 +310,6 @@ void    grand2(t_list **a, t_list **b)
 								pb(b, a);
 							}
 						}
-						/*else if ((*a)->nb < (*b)->nb && (*a)->nb > (*b)->next->nb)
-						{
-							tmp = max_two((*a)->nb, *b);
-							if (tmp > taille_list(*b) / 2)
-							{
-								while (tmp < taille_list(*b))
-								{
-									rrb(b);
-									tmp++;
-								}
-								pb(b, a);
-							}
-							else
-							{
-								while (tmp >= 1)
-								{
-									rb(b);
-									tmp--;
-								}
-								pb(b, a);
-							}
-						}*/
 						else if ((*a)->nb < (*b)->nb && (*a)->nb > (*b)->next->nb)
 						{
 							pb(b, a);
@@ -474,7 +318,6 @@ void    grand2(t_list **a, t_list **b)
 						else if (distance_place2(*b, (*a)->nb) <= taille_list(*b) / 2)
 						{
 							tmp = distance_place2(*b, (*a)->nb);
-							//ft_printf("distance place %d = %d\n", (*a)->nb , tmp);
 							while (tmp >= 1)
 							{
 								rb(b);
@@ -499,7 +342,6 @@ void    grand2(t_list **a, t_list **b)
 						if ((*a)->nb > nb_index(*b, max_first(*b)))
 						{
 							tmp = max_first(*b);
-							//ft_printf("jshdfjhsdakj %d et %d\n", max_first(*b), taille_list(*b));
 							if (tmp == taille_list(*b))
 							{
 								rrb(b);
@@ -526,9 +368,7 @@ void    grand2(t_list **a, t_list **b)
 						}
 						else if ((*a)->nb > (*b)->nb)
 						{
-							//ft_printf("sdfjkahsdjkf\n");
 							tmp = max_two((*a)->nb, *b);
-							//ft_printf("max- TWO = %d\n", tmp);
 							if (tmp > taille_list(*b) / 2)
 							{
 								while (tmp < taille_list(*b))
@@ -552,7 +392,6 @@ void    grand2(t_list **a, t_list **b)
 							pb(b, a);
 					}
 				}
-				//display_list(*b);
 			}
 			
 			tmp = min_first(*b);
@@ -575,11 +414,6 @@ void    grand2(t_list **a, t_list **b)
 					}
 				}
 			}
-			//display_list(*a);*/
-			/*ft_printf("< 5>\n");
-			display_list(*a);
-			ft_printf("|||||||\n");*/
-			
 			moyen(a, b);
 		}
 	}

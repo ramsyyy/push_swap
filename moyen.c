@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:41:03 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/10 20:09:54 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/14 18:07:50 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,39 @@ int	min_second(t_list *a)
 	return (pos);
 }
 
+int	mouv_sup(t_list *a, t_list *b, int	nb);
+{
+	if (nb_index(min_mouv(a)) < b->nb)
+	{
+		if ((*a)->nb < nb_index(*b, min_first(*b)))
+		{
+			tmp = min_first(*b);
+			if (tmp > taille_list(*b) / 2)
+			{
+				if(tmp < taille_list(*b))
+				{
+					rrb(b);
+					tmp++;
+				}
+				pb(b, a);
+			}
+			else
+			{
+				while (tmp >= 1)
+				{
+					rb(b);
+					tmp--;
+				}
+				pb(b, a);
+			}
+		}
+	}
+	if (tmp <= taille_list(a))
+		return (1);
+	else
+		return (0);	
+}
+
 void	push_min_second(t_list **a, int min)
 {
 	if (min == 0 || min == 1)
@@ -144,8 +177,13 @@ int	distance_place_a(t_list *a, int	min)
 	return (i);
 }
 
+
+
 void	push_min(t_list **a, t_list **b, int min)
 {
+	int	nb;
+
+	nb = nb_index(t_list *a, min);
 	if (min > taille_list(*a) / 2)
 	{
 		while (min <= taille_list(*a))
