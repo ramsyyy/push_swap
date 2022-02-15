@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:41:03 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/14 22:06:29 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/15 15:28:00 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	min_first(t_list *a)
 	}
 	return (pos);
 }
+
 /*
 int	max_first(t_list *a)
 {
@@ -75,7 +76,7 @@ int	min_second(t_list *a)
 	else
 		tmp = a->next->nb;
 	while (a != NULL)
-	{
+	{	
 		if (i == min)
 		{
 			i++;
@@ -95,90 +96,49 @@ int	min_second(t_list *a)
 	}
 	return (pos);
 }
-
-int	mouv_sup(t_list *a, t_list *b)
+/*
+int	mouv_sup(t_list *a, t_list *b, int	nb);
 {
-	if (nb_index(a, min_mouv(a)) < b->nb)
+	if (nb_index(min_mouv(a)) < b->nb)
 	{
-		int	tmp;
-
-		if (nb_index(a, min_mouv(a))< nb_index(b, min_first(b)))
+		if ((*a)->nb < nb_index(*b, min_first(*b)))
 		{
-			tmp = min_first(b);
-			if (tmp > taille_list(b) / 2)
-				if(tmp < taille_list(b))
-					return (1);
+			tmp = min_first(*b);
+			if (tmp > taille_list(*b) / 2)
+			{
+				if(tmp < taille_list(*b))
+				{
+					rrb(b);
+					tmp++;
+				}
+				pb(b, a);
+			}
+			else
+			{
+				while (tmp >= 1)
+				{
+					rb(b);
+					tmp--;
+				}
+				pb(b, a);
+			}
 		}
-		else if (distance_place2(b, nb_index(a, min_mouv(a))) > taille_list(b) / 2)
-			if (distance_place2(b, nb_index(a, min_mouv(a))) <= taille_list(b) - 1)
-				return (1);
 	}
+	if (tmp <= taille_list(a))
+		return (1);
 	else
-	{
-		if (nb_index(a, min_mouv(a)) > nb_index(b, max_first(b)))
-		{
-			if (max_first(b) > taille_list(b) / 2)
-				if (max_first(b) <= taille_list(b))
-					return (1);
-		}
-		else if (nb_index(a, min_mouv(a)) > b->nb)
-		{
-			if (max_two(nb_index(a, min_mouv(a)), b) > taille_list(b) / 2)
-				if (max_two(nb_index(a, min_mouv(a)), b) <= taille_list(b))
-					return (1);
-		}
-	}
-	return (0);
-}
+		return (0);	
+}*/
 
-int	mouv_sup2(t_list *a, t_list *b)
+void	push_min_second(t_list **a, int min)
 {
-	if (nb_index(a, min_mouv(a)) < b->nb)
-	{
-		int	tmp;
-
-		if (nb_index(a, min_mouv(a)) < nb_index(b, min_first(b)))
-		{
-			tmp = min_first(b);
-			if (tmp < taille_list(b) / 2)
-				if(tmp > 1)
-					return (1);
-		}
-		else if (distance_place2(b, nb_index(a,min_mouv(a))) < taille_list(b) / 2)
-			if (distance_place2(b, (a)->nb) > 1)
-				return (1);
-	}
-	else
-	{
-		if (nb_index(a, min_mouv(a)) > nb_index(b, max_first(b)))
-		{
-			if (max_first(b) < taille_list(b) / 2)
-				if (max_first(b) > 1)
-					return (1);
-		}
-		else if (nb_index(a, min_mouv(a)) > b->nb)
-		{
-			if (max_two(nb_index(a, min_mouv(a)), b) < taille_list(b) / 2)
-				if (max_two(nb_index(a, min_mouv(a)), b) > 1)
-					return (1);
-		}
-	}
-	return (0);
-}
-
-void	push_min_second(t_list **a, t_list **b, int min)
-{
-	(void)b;
 	if (min == 0 || min == 1)
 		return ;
 	if (min > taille_list(*a) / 2)
 	{
 		while (min <= taille_list(*a))
 		{
-			if (mouv_sup(*a, *b) == 1)
-				rrr(a , b);
-			else
-				rra(a);
+			rra(a);
 			min++;
 		}
 	}
@@ -186,14 +146,12 @@ void	push_min_second(t_list **a, t_list **b, int min)
 	{
 		while (min > 1)
 		{
-			if (mouv_sup2(*a, *b) == 1)
-				rr(a, b);
-			else
-				ra(a);
+			ra(a);
 			min--;
 		}
 	}
 }
+
 
 int	distance_place_a(t_list *a, int	min)
 {
@@ -220,22 +178,27 @@ int	distance_place_a(t_list *a, int	min)
 	return (i);
 }
 
+
+
 void	push_min(t_list **a, t_list **b, int min)
 {
-	if (min > taille_list(*b) / 2)
+	//int	nb;
+
+	//nb = nb_index(t_list *a, min);
+	if (min > taille_list(*a) / 2)
 	{
-		while (min < taille_list(*b))
+		while (min <= taille_list(*a))
 		{
-			rrb(b);
+			rra(a);
 			min++;
 		}
 		pb(b, a);
 	}
 	else
 	{
-		while (min >= 1)
+		while (min > 1)
 		{
-			rb(b);
+			ra(a);
 			min--;
 		}
 		pb(b, a);
@@ -275,7 +238,7 @@ void	moyen(t_list **a, t_list **b)
 			{
 				rb(b);
 			}
-
+			
 		}
 		//display_list(*b);
 		petit(a, b);
