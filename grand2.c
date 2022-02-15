@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:25:18 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/14 18:01:58 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/15 17:39:49 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,13 +242,49 @@ void	nb_mouv(t_list **a, t_list **b, t_tab tab)
 	}
 }
 
+
+
+
+
+/*
+void	grand3(t_list **a, t_list **b)
+{
+	int	tmp ;
+	
+	if (check_list(*a, *b) == 0)
+	{
+		mediane(a, b);
+		//display_list(*b);
+		if (check_list_b(*b) == 0)
+		{
+			while (taille_list(*b) > 1)
+			{
+				//display_list(*a);
+				nb_mouv2(b, a);
+				//ft_printf("QWERTYUIO %d\n", min_mouv(*b));
+				back_to_start(b);
+				push_min_second(b, min_mouv(*b));
+				if ((*b)->nb < (*a)->nb)
+				{
+					if (taille_list(*a) == 1)
+						pa(a, b);
+					else if ((*b)->nb < min_first(*a))
+					{
+						push_min_second(a, min_first(*a));
+						pa(a, b);
+					}
+					else if ()
+				}
+	}
+	display_list(*a);
+}*/
+
 void    grand2(t_list **a, t_list **b)
 {
 	int	tmp;
 	t_tab tab;
 
 	tab = check_chunk(*a);
-	//ft_printf("QWEQWEQWEQW %d\n", nb_search(tab, (*a)->nb));
 	if (check_list(*a, *b) == 0)
 	{
 		if(check_list_a(*a) == 0)

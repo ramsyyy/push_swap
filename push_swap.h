@@ -76,11 +76,13 @@ void	petit(t_list **a, t_list **b);
 void	moyen(t_list **a, t_list **b);
 void	grand(t_list **a, t_list **b);
 void    grand2(t_list **a, t_list **b);
+void	grand3(t_list **a, t_list **b);
 
 int	min_first(t_list *a);
 int	max_first(t_list *a);
 int	min_second(t_list *a);
 int	distance(int var, t_list *a);
+int distance_place2(t_list *b, int nb);
 
 int	list_dernier(t_list *a);
 int	check_list_b(t_list *a);
@@ -95,5 +97,7 @@ int	distance_place_a(t_list *a, int	min);
 void	push_min_second(t_list **a, int min);
 t_tab	check_chunk(t_list *a);
 void	create_chunk(int	*tab, t_list *a);
+void	mediane(t_list **a, t_list **b);
+int	min_mouv(t_list *a);
 
 #endif
