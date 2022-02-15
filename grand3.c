@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:29:17 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/15 19:26:36 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/15 20:53:29 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,11 @@ int distance_place4(t_list *a, int nb)
         else
             break ;
     }
+    /*if (j > taille_list(a) / 2)
+    {
+        return (taille_list(a) - j);
+    }*/
+    back_to_start(&a);
 	return (j);
 }
 void	nb_mouv2(t_list **a, t_list **b)
@@ -74,7 +79,7 @@ void	nb_mouv2(t_list **a, t_list **b)
 	while (tmp < size)
 	{
 		(*b)->mouv = distance_place3(*b, (*b)->nb) + distance_place4(*a, (*b)->nb);
-		//ft_printf("QWERTY %d = %d\n", (*b)->nb,  (*b)->mouv);
+		ft_printf("QWERTY %d = %d\n", (*b)->nb,  (*b)->mouv);
 		if ((*b)->next == NULL)
 			break ;
 		*b = (*b)->next;
@@ -104,25 +109,30 @@ void	mediane(t_list **a, t_list **b)
 		if ((*a)->nb == tab.tab[max] || (*a)->nb == tab.tab[max - 1] || (*a)->nb == tab.tab[max - 2])
 			ra(a);
         pb(b, a);
-		if ((*b)->nb > mediane && taille_list(*b) > 1)
+		if ((*b)->nb < mediane && taille_list(*b) > 1)
 			rb(b);
        
 	}
     petit(a, b);
 }
+ 
 
 void	push_min3(t_list **b, t_list **a, int min)
 {
     int i;
 
     i = distance_place4(*a, nb_index(*b, min));
+   // ft_printf("AZERTY = %d\n", i);
     (void)a;
 	if (min > taille_list(*b) / 2)
 	{
 		while (min <= taille_list(*b))
 		{
             if (i >= taille_list(*a) / 2)
+            {
                 rrr(a, b);
+                i++;
+            }
             else
 			    rrb(b);
 			min++;
@@ -132,8 +142,11 @@ void	push_min3(t_list **b, t_list **a, int min)
 	{
 		while (min > 1)
 		{
-            if (i <= taille_list(*a) / 2)
+            if (i < taille_list(*a) / 2 &&  i > 0)
+            {
                 rr(a, b);
+                i--;
+            }
 			else
                 rb(b);
 			min--;
@@ -189,17 +202,24 @@ void	grand3(t_list **a, t_list **b)
 			while (taille_list(*b) >= 1)
 			{
                 //display_list(*b);
-				//display_list(*a);
+				//display_list(*b);
 				nb_mouv2(a, b);
-				//ft_printf("QWERTYUIO %d\n", min_mouv(*b));
+				ft_printf("QWERTYUIO %d\n", min_mouv(*b));
+                ft_printf("Size = %d\n", taille_list(*a));
 				back_to_start(b);
                 tmp = min_mouv(*b);
+                //ft_printf("QWERTY = %d\n",tmp);
+                 ft_printf("AAAAAAA = \n");
+                display_list(*a);
+                ft_printf("FIN AA \n");
                 push_min3(b, a, tmp);
                 push_position(a, b);
-               /* ft_printf("AAAAAAA = \n");
+                ft_printf("AAAAAAA = \n");
                 display_list(*a);
-                ft_printf("FIN AA \n");*/
+                ft_printf("FIN AA \n");
+                
             }
+            
         }
 	}
     tmp = 1;
@@ -231,5 +251,5 @@ void	grand3(t_list **a, t_list **b)
 			}
 		}
 	}
-    //display_list(*a);
+    display_list(*a);
 }
