@@ -6,26 +6,11 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 15:15:24 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/15 20:02:17 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/16 16:07:35 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	taille_list(t_list *a)
-{
-	int	x;
-
-	x = 0;
-	while (a != NULL)
-	{	
-		x++;
-		if (a->next == NULL)
-			break ;
-		a = a->next;
-	}
-	return (x);
-}
 
 int	addition_list(t_list *a)
 {
@@ -125,27 +110,6 @@ int	list_dernier(t_list *a)
 	back_to_start(&a);
 	return (tmp);
 }
-
-/*
-int	max_b(t_list *b)
-{
-	int	tmp;
-	int	i;
-
-	tmp = 0;
-	i = 0;
-	while (b != NULL)
-	{
-		if (b->nb > tmp)
-		{
-			i++;
-			tmp = b->nb;
-		}
-		if (b->next == NULL)
-			break ;
-		b = b->next;	
-	}
-}*/
 
 void	algo(t_list **a, t_list **b)
 {

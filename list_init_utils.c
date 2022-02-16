@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:13:23 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/10 19:57:19 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/16 16:07:11 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,19 @@ void	go_to_end(t_list **a)
 			break ;
 		*a = (*a)->next;
 	}
+}
+
+int	taille_list(t_list *a)
+{
+	int	x;
+
+	x = 0;
+	while (a != NULL)
+	{	
+		x++;
+		if (a->next == NULL)
+			break ;
+		a = a->next;
+	}
+	return (x);
 }

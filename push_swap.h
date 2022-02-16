@@ -24,16 +24,6 @@ struct s_moy
 	int	moy;
 };
 
-typedef struct s_chunk chunk;
-struct s_chunk{
-
-	int	*chunk1;
-	int	*chunk2;
-	int	*chunk3;
-	int	*chunk4;
-	int	*chunk5;
-};
-
 typedef struct s_tab t_tab;
 struct s_tab{
 	int *tab;
@@ -81,8 +71,10 @@ void	grand3(t_list **a, t_list **b);
 int	min_first(t_list *a);
 int	max_first(t_list *a);
 int	min_second(t_list *a);
-int	distance(int var, t_list *a);
-int distance_place2(t_list *b, int nb);
+int	distance(int nb, t_list *a);
+int	distance_place4(t_list *a, int nb);
+int	distance_place5(t_list *a, int nb);
+void	nb_mouv2(t_list **a, t_list **b);
 
 int	list_dernier(t_list *a);
 int	check_list_b(t_list *a);
