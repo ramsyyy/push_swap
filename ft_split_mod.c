@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 16:32:27 by raaga             #+#    #+#             */
-/*   Updated: 2022/01/28 16:29:16 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/18 16:23:00 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,10 @@ char	**ft_split_mod(char const *s, char c, char *str)
 	compteur = count_words(s, c);
 	tab = (char **)malloc(sizeof(char *) * (compteur + 2));
 	if (!tab)
+	{
+		ft_free(tab);
 		return (NULL);
+	}
 	tab[0] = ftt_strdup(tab, str, c);
 	while (*s)
 	{

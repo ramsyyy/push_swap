@@ -6,19 +6,11 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:07:04 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/02 21:40:11 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/18 21:06:11 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-/**
- * @brief verifier le caractere precedant le caractere '-' et le suivant
- *
- * @param str la string
- * @param i l'emplacement du caractere negative
- * @return int
- */
 
 int	if_neg(char *str, int i)
 {
@@ -38,13 +30,6 @@ int	if_neg(char *str, int i)
 	return (0);
 }
 
-/**
- * @brief
- * verifier qu'il n'y a que des chiffre dans la string envoyé.
- * @param str string dans l'argument du main.
- * @return int retourne 1 ou -1.
- */
-
 static int	check_numbers(char *str)
 {
 	int	i;
@@ -63,7 +48,7 @@ static int	check_numbers(char *str)
 		}
 		else if (str[i] == ' ')
 			i++;
-		else if (str[i] == ',' && str[i + 1] == ' ')
+		else if (str[i + 1] == ' ')
 				i++;
 		else if (str[i] == '-')
 		{
@@ -77,21 +62,15 @@ static int	check_numbers(char *str)
 	return (nb);
 }
 
-/**
- * @brief check les argument passer en parametre
- *
- * @param argc
- * @param argv
- * @return int
- */
-
 int	check_doublons(int argc, char **argv)
 {
 	int		i;
 	int		q;
+	int		tmp2;
 	char	**tmp;
 
 	i = 1;
+	tmp2 = argc;
 	if (argc == 2)
 	{
 		tmp = argv;
@@ -103,11 +82,36 @@ int	check_doublons(int argc, char **argv)
 		q = i + 1;
 		while (q < argc)
 		{
-			if (ft_strcmp(argv[i], argv[q]) == 0)
+			if ((ft_strcmp(argv[i], "2147483647") > 0
+					&& ft_strlen(argv[i]) >= 10)
+				|| (ft_strcmp(argv[i], "-2147483648") > 0
+					&& ft_strlen(argv[i]) >= 11))
 				return (0);
+			if (ft_strcmp(argv[i], argv[q]) == 0) // CEST ICI AUE TA FOUTU TA MERDE 
+			{
+				if (argc == 2)
+				{
+					while (argc >= 0)
+					{
+						free(argv[argc]);
+						argc--;
+					}
+					free(argv);
+				}
+				return (0);
+			}
 			q++;
 		}
 		i++;
+	}
+	if (tmp2 == 2)
+	{
+		while (argc >= 0)
+		{
+			free(argv[argc]);
+			argc--;
+		}
+		free(argv);
 	}
 	return (1);
 }

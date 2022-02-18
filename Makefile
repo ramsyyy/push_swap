@@ -30,7 +30,7 @@ $(NAME): $(OBJ)
 		make -C $(PRINTFPATH)
 		mv $(LIBFTPATH)$(LIBFTNAME) $(LIBFTNAME)
 		mv $(PRINTFPATH)$(PRINTFNAME) $(PRINTFNAME)
-		${CC}  ${CFLAGS} ${SRC} $(PARSING) $(UTILS) $(PRINTFNAME) ${LIBFTNAME} -o ${NAME}
+		${CC}  -g ${CFLAGS} ${SRC} $(PARSING) $(UTILS) $(PRINTFNAME) ${LIBFTNAME} -o ${NAME}
 
 clean:
 		rm -rf *.o

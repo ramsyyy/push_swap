@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:25:18 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/16 15:59:06 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/18 14:29:04 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	distance_place4(t_list *a, int nb)
 		j++;
 	}
 	back_to_start(&a);
+	free(tab.tab);
 	if (j > taille_list(a) / 2)
 		return (taille_list(a) - j);
 	else
@@ -103,6 +104,7 @@ int	distance_place5(t_list *a, int nb)
 		a = a->next;
 		j++;
 	}
+	free(tab.tab);
 	back_to_start(&a);
 	return (j);
 }

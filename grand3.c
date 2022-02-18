@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:29:17 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/16 18:26:24 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/18 14:27:31 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	mediane(t_list **a, t_list **b)
 		if ((*b)->nb < mediane && taille_list(*b) > 1)
 			rb(b);
 	}
+	free(tab.tab);
 	petit(a, b);
 }
 
@@ -58,7 +59,9 @@ void	push_min3(t_list **b, t_list **a, int min)
 
 	i = distance_place4(*a, nb_index(*b, min));
 	if (min > taille_list(*b) / 2)
+	{
 		push_min3_utils(min, i, a, b);
+	}
 	else
 	{
 		while (min > 1)
@@ -146,7 +149,8 @@ void	grand3(t_list **a, t_list **b)
 	if (check_list(*a, *b) == 0)
 	{
 		mediane(a, b);
-		max = (*a)->next->next->nb;
+		go_to_end(a);
+		max = (*a)->nb;
 		if (check_list_b(*b) == 0)
 		{
 			while (taille_list(*b) >= 1)
@@ -156,9 +160,11 @@ void	grand3(t_list **a, t_list **b)
 				tmp = min_mouv(*b);
 				push_min3(b, a, tmp);
 				push_position(a, b);
+			/*	display_list(*a);
+				ft_printf("\\\\\\\\n");
+				display_list(*b);*/
 			}
 		}
 		finish(a, max);
 	}
-	
 }

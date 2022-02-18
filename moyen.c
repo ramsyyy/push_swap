@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:41:03 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/16 16:06:08 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/18 13:14:24 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,9 +127,12 @@ void	push_min(t_list **a, t_list **b, int min)
 		while (min <= taille_list(*a))
 		{
 			rra(a);
+			
 			min++;
 		}
+		
 		pb(b, a);
+		
 	}
 	else
 	{
@@ -155,10 +158,12 @@ void	moyen(t_list **a, t_list **b)
 			second = min_second(*a);
 			if (taille_list(*a) == 5)
 			{
+				
 				push_min(a, b ,first);
 			}
 			else if (distance(first, *a) <= distance(second, *a))
 			{
+				
 				push_min(a, b, first);
 			}
 			else

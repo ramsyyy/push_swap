@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 16:45:07 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/10 14:54:53 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/18 16:40:19 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_list	*ft_lstnew(int nb)
 
 char	**list_atoi(char **argv)
 {
-	char **split;
+	char	**split;
 
 	split = ft_split_mod(argv[1], ' ', argv[0]);
 	return (split);
@@ -36,8 +36,8 @@ t_list	*init(int	argc, char **argv)
 {
 	t_list	*elem;
 	t_list	*tmp;
-	int	i;
-	int	n;
+	int		i;
+	int		n;
 
 	i = 0;
 	n = argc - 1;
@@ -75,7 +75,9 @@ t_list	*list_init(int argc, char **argv)
 {
 	t_list	*elem;
 	char	**tmp;
+	int		tmp2;
 
+	tmp2 = argc;
 	if (argc == 2)
 	{
 		tmp = argv;
@@ -83,6 +85,15 @@ t_list	*list_init(int argc, char **argv)
 		argc = count_split(argv);
 	}
 	elem = init(argc, argv);
+	if (tmp2 == 2)
+	{
+		while (argc >= 0)
+		{
+			free(argv[argc]);
+			argc--;
+		}
+		free(argv);
+	}
 	back_to_start(&elem);
 	return (elem);
 }
@@ -99,15 +110,12 @@ void	display_list(t_list *a)
 			if (a->next == NULL)
 				break ;
 			a = a->next;
-
 		}
 		return ;
 	}
-
 	else
 	{
 		back_to_start(&a);
 		display_list(a);
 	}
-
 }
