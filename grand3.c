@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:29:17 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/18 14:27:31 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/21 18:42:33 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	mediane(t_list **a, t_list **b)
 
 void	push_min3_utils(int min, int i, t_list **a, t_list **b)
 {
-	while (min <= taille_list(*b))
+	while (min <= taille_list(*b) && taille_list(*b) > 1)
 	{
 		if (i >= taille_list(*a) / 2)
 		{
@@ -158,13 +158,14 @@ void	grand3(t_list **a, t_list **b)
 				nb_mouv2(a, b);
 				back_to_start(b);
 				tmp = min_mouv(*b);
-				push_min3(b, a, tmp);
+				if (taille_list(*b) > 1)
+					push_min3(b, a, tmp);
 				push_position(a, b);
-			/*	display_list(*a);
-				ft_printf("\\\\\\\\n");
-				display_list(*b);*/
 			}
 		}
+		else
+			while (taille_list(*b) >= 1)
+				pa(a, b);
 		finish(a, max);
 	}
 }
