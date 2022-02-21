@@ -6,37 +6,11 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:29:17 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/21 18:42:33 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/21 20:34:20 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	mediane(t_list **a, t_list **b)
-{
-	int		mediane;
-	int		max;
-	int		i;
-	t_tab	tab;
-
-	tab = check_chunk(*a);
-	max = tab.size - 1;
-	mediane = tab.tab[tab.size / 2];
-	i = 0;
-	while (i < tab.size)
-		i++;
-	while (taille_list(*a) > 3)
-	{
-		while ((*a)->nb == tab.tab[max]
-			|| (*a)->nb == tab.tab[max - 1] || (*a)->nb == tab.tab[max - 2])
-			ra(a);
-		pb(b, a);
-		if ((*b)->nb < mediane && taille_list(*b) > 1)
-			rb(b);
-	}
-	free(tab.tab);
-	petit(a, b);
-}
 
 void	push_min3_utils(int min, int i, t_list **a, t_list **b)
 {
@@ -75,31 +49,6 @@ void	push_min3(t_list **b, t_list **a, int min)
 				rb(b);
 			min--;
 		}
-	}
-}
-
-void	push_position(t_list **a, t_list **b)
-{
-	int	i;
-
-	i = distance_place5(*a, (*b)->nb);
-	if (i > taille_list(*a) / 2)
-	{
-		while (i < taille_list(*a))
-		{
-			rra(a);
-			i++;
-		}
-		pa(a, b);
-	}
-	else
-	{
-		while (i >= 1)
-		{
-			ra(a);
-			i--;
-		}
-		pa(a, b);
 	}
 }
 

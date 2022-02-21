@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:13:23 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/18 13:09:50 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/21 20:26:52 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,26 @@ int	taille_list(t_list *a)
 		a = a->next;
 	}
 	return (x);
+}
+
+void	display_list(t_list *a)
+{
+	if (a == NULL)
+		return ;
+	if (a->prev == NULL)
+	{
+		while (a != NULL)
+		{
+			ft_printf("%d\n", a->nb);
+			if (a->next == NULL)
+				break ;
+			a = a->next;
+		}
+		return ;
+	}
+	else
+	{
+		back_to_start(&a);
+		display_list(a);
+	}
 }

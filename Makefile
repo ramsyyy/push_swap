@@ -10,7 +10,8 @@ PRINTFPATH = ./printf/
 
 PRINTFNAME = libftprintf.a
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror 
+
 
 OBJ := $(*.o)
 
