@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 18:25:29 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/24 15:04:37 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/24 15:33:41 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	*transform_to_int(char **argv, int argc)
 		exit(0);
 	while (i < argc - 1)
 	{
-		tab[i] = atoi(argv[i + 1]);
+		tab[i] = ft_atoi(argv[i + 1]);
 		i++;
 	}
 	return (tab);

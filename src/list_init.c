@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 16:45:07 by raaga             #+#    #+#             */
-/*   Updated: 2022/02/23 14:15:10 by raaga            ###   ########.fr       */
+/*   Updated: 2022/02/24 15:34:23 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_list	*init(int argc, char **argv)
 	tmp = NULL;
 	while (++i <= n)
 	{
-		elem = ft_lstnew(atoi(argv[i]));
+		elem = ft_lstnew(ft_atoi(argv[i]));
 		if (i == 1)
 			elem->prev = NULL;
 		if (i > 1)
