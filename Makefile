@@ -13,13 +13,13 @@ PRINTFNAME = libftprintf.a
 CFLAGS = -Wall -Wextra -Werror 
 
 
-OBJ := $(*.o)
+OBJ := $(.c=.o)
 
-SRC = main.c
+SRC = ./src/main.c
 
-PARSING = ./parsing/check_arg.c ./parsing/check_arg_utils.c
+PARSING = ./src/check_arg.c ./src/check_arg_utils.c
 
-UTILS = ./sa.c ./pa.c ./ft_split_mod.c ./list_init.c ./list_init_utils.c ./operations.c ./operation_2.c ./check_val_list.c ./petit.c ./moyen.c ./grand.c ./grand_utils.c ./grand3.c 
+UTILS = ./src/sa.c ./src/pa.c ./src/ft_split_mod.c ./src/list_init.c ./src/list_init_utils.c ./src/operations.c ./src/operation_2.c ./src/check_val_list.c ./src/petit.c ./src/moyen.c ./src/grand.c ./src/grand_utils.c ./src/grand3.c 
 
 all : $(NAME)
 
@@ -31,12 +31,12 @@ $(NAME): $(OBJ)
 		make -C $(PRINTFPATH)
 		mv $(LIBFTPATH)$(LIBFTNAME) $(LIBFTNAME)
 		mv $(PRINTFPATH)$(PRINTFNAME) $(PRINTFNAME)
-		${CC}  -g ${CFLAGS} ${SRC} $(PARSING) $(UTILS) $(PRINTFNAME) ${LIBFTNAME} -o ${NAME}
+		${CC} ${CFLAGS} ${SRC} $(PARSING) $(UTILS) $(PRINTFNAME) ${LIBFTNAME} -o ${NAME}
 
 clean:
-		rm -rf *.o
+		rm -rf *.o && make -C $(LIBFTPATH) clean && make -C $(PRINTFPATH) clean
 
 fclean: clean
-		rm -f $(LIBFTNAME) $(PRINTFNAME) ${OBJS} $(NAME)
+		rm -f $(LIBFTNAME) $(PRINTFNAME) ${OBJS} $(NAME) && make -C $(LIBFTPATH) fclean && make -C $(PRINTFPATH) fclean
 
 re: fclean all
